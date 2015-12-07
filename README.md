@@ -22,8 +22,8 @@ Copyright 2015 The SpecDecBot Project (Aly Shmahell, Alya Salman, Elias Soud, Mo
 All rights reserved.
 
 Redistribution and use in source (Graphml,svg,tex and so forth) and 'compiled' forms (HTML, PDF, PNG, JPG, PostScript, RTF and so forth) with or without modification, are permitted provided that the following conditions are met:
-1. Redistributions of source code (Graphml,svg,tex and other for- mats) must retain the above copyright notice, this list of conditions and the following disclaimer as the first lines of this file unmodified.
-2. Redistributions in compiled form (HTML, PDF, PNG, JPG, PostScript, RTF and other formats) must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documen- tation and/or other materials provided with the distribution.
+- Redistributions of source code (Graphml,svg,tex and other for- mats) must retain the above copyright notice, this list of conditions and the following disclaimer as the first lines of this file unmodified.
+- Redistributions in compiled form (HTML, PDF, PNG, JPG, PostScript, RTF and other formats) must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documen- tation and/or other materials provided with the distribution.
 
 THIS DOCUMENTATION IS PROVIDED BY THE SPECDECBOT PROJECT "AS IS" AND ANY EXPRESS OR IMPLIED WAR- RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE SPECDECBOT PROJECT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIM- ITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SER- VICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS IN- TERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABIL- ITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS DOCU- MENTATION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div style="page-break-after: always;">
@@ -50,13 +50,13 @@ For that we present you dear user with SpecDecBot, an Artificial Agent capable o
 
 ## Introduction
 As illustrated in figure (0), the Project has an object- oriented work-flow, which goes as follows :
-1. an Input string is provided to a clever-bot.
-2. the clever-bot utilizes an NLP class to mine a dictionary and create a semantic tree for the input string.
-3. if the tree is successfully created, the bot uses the dictionary to link the tree with algorithms from the processes library.
-4. the algorithms use input from the semantic tree and answer the intended question in a binary matter.
-5. the bot uses the binary answer the NLP class, and the Dictionary to create a second semantic tree for an answer.
-6. the bot converts the answer's semantic tree to an output-string.
-7. in case the first semantic tree (the question's) is not created for reasons like "incomplete semantic tree, faulty input, or illogical input" or if the tree is incoherent, the clever-bot communicates with the user to try and correct the Error.
+- an Input string is provided to a clever-bot.
+- the clever-bot utilizes an NLP class to mine a dictionary and create a semantic tree for the input string.
+- if the tree is successfully created, the bot uses the dictionary to link the tree with algorithms from the processes library.
+- the algorithms use input from the semantic tree and answer the intended question in a binary matter.
+- the bot uses the binary answer the NLP class, and the Dictionary to create a second semantic tree for an answer.
+- the bot converts the answer's semantic tree to an output-string.
+- in case the first semantic tree (the question's) is not created for reasons like "incomplete semantic tree, faulty input, or illogical input" or if the tree is incoherent, the clever-bot communicates with the user to try and correct the Error.
 
 notice : the Clever-Bot performs Semantic-Tree oper- ations, String-Conversion and Algorithm-Linking opera- tions. however, it can also communicate with the user in an interactive manner using suggestions from an embedded Chatter-Bot.
 <div style="page-break-after: always;">
