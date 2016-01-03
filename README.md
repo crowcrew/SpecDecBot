@@ -1,4 +1,4 @@
-<img src = "./doc/SpecDecBot-Main.png")>
+<img src = "./doc/SpecDecBot-Cover.png")>
 
 # <p align="center"> an NLP dependant Clever Bot for Critical Decision Affirmation
  </p>
@@ -18,7 +18,7 @@
 
 ## Licenses
 - The Documentation of the SpecDecBot project and all related materials to the documentation (including this README), is under the FreeBSD Documentation License.
-- The Software of the SpecDecBot project in both binary and source forms are under the specdecbot (modified zlib) license
+- The Software of the SpecDecBot project in both binary and source forms are under the SpecDecBot (modified zlib) License.
 
 ### FreeBSD Documentation License
 Copyright 2015 The SpecDecBot Project (Aly Shmahell, Alya Salman, Elias Soud, Mohammad Shbani, Ruaa Sleiman, Sarah Ammar).
@@ -33,7 +33,7 @@ THIS DOCUMENTATION IS PROVIDED BY THE SPECDECBOT PROJECT "AS IS" AND ANY EXPRESS
 <div style="page-break-after: always;">
 </div>
 
-### specdecbot (modified zlib) license
+### SpecDecBot (modified zlib) License
 Copyright (c) 2015 SpecDecBot Project (Aly Shmahell, Alya Salman, Elias Soud, Mohammad Shbani, Ruaa Sleiman, Sarah Ammar).
 
 This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
