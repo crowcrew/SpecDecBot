@@ -5,7 +5,6 @@
 	<title>
 		SpecDecBot
 	</title>
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<meta property="og:title" content="SpecDecBot" />
 	<meta property="og:description" content="Specialty Decision Bot" />
 	<meta property="og:type" content="website" />
@@ -16,114 +15,72 @@
 	<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
 	<link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
 	<style>
+		@font-face {
+			font-family: 'spaceship';
+			src: url("./fonts/Spaceship-Bullet.ttf");
+		}
+		
+		@font-face {
+			font-family: 'glyphicons-halflings-regular';
+			src: url("./fonts/glyphicons-halflings-regular.ttf");
+		}
+		
 		body {
-			background-color: #000000;
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-			color: #ffffff;
-		}
-		
-		a:link {
-			color: #0071bc;
-			background-color: transparent;
-			text-decoration: none;
-		}
-		
-		a:visited {
-			color: gray;
-			background-color: transparent;
-			text-decoration: none;
-		}
-		
-		a:hover {
-			color: #228b22;
-			background-color: transparent;
-			text-decoration: underline;
-		}
-		
-		a:active {
-			color: #2fcf22;
-			background-color: transparent;
-			text-decoration: underline;
+			background-color: #00000f;
+			font-family: 'glyphicons-halflings-regular';
 		}
 	</style>
 </head>
 
 <body>
-	<div class="container">
+	<div class="container" style="margin:10px;">
 		<div class="row">
-			<div class="col-sm-9" style="border-right:solid #ffffff;">
-				<div class="container">
-					<div class="row">
-						<br>
-						<br>
-						<div class="col-sm-2" style="font-variant: small-caps;font-size: 72px;border-left:solid white;border-right: solid white;border-top:solid white;">
-							<p>Spec.</p>
-						</div>
-						<div class="col-sm-1"></div>
-						<div class="col-sm-9">
-							<img src="images/favicon.png" title="SpecDecBot" alt="SpecDecBot" style="float:center;width:128px;height:200px;">
-						</div>
-					</div>
-				</div>
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-2" style="font-variant: small-caps;font-size: 72px;border-left:solid white;border-right: solid white;">
-							<p>Dec.</p>
-						</div>
-						<div class="col-sm-2"></div>
-						<div class="col-sm-4">
-							<p style="text-align: center;"> an NLP dependant Clever Bot for Critical Decision Affirmation.</p>
-						</div>
-						<div class="col-sm-4"></div>
-					</div>
-				</div>
-				<div class="container">
-					<div class="row">
-						<br>
-						<br>
-						<br>
-						<br>
-						<div class="col-sm-2" style="font-variant: small-caps;font-size: 72px;border-left:solid white;border-right: solid white;border-bottom: solid white;">
-							<p>Bot!</p>
-						</div>
-						<div class="col-sm-1"></div>
-						<div class="col-sm-5">
-							<p style="text-align: center;">
-								This project is for spring semester of 2016 for the 4th year of Computer and Automation Engineering @ Tishreen University
-							</p>
-							<p style="text-align: center;">
-								<span class="label label-danger">It is now in early development stages</span>
-							</p>
-						</div>
-					</div>
-				</div>
-
+			<div class="col-sm-4">
+				<img src="./images/favicon.png" alt="SpecDecBot-Mascot" title="SpecDecBot-Mascot" style="length:300px;width:250px;">
 			</div>
-			<div class="col-sm-3" style="text-align:center">
-				<div class="conrainer" style="border-bottom:solid #ffffff;">
-					<div class="row">
-						<h3 style="font-variant: small-caps;font-size: 46px;">
-							Progress
-							</h3>
-					</div>
-				</div>
-				<br>
-				<br>
-				<br>
-				<br>
-				<div class="conrainer">
-					<div class="row">
-						<span class="label label-success">Project Registration @ Tishreen University</span>
-						<span class="label label-success">Aquiring the British National Corpus</span>
-						<span class="label label-primary">Writing an XML Parsing Class in C++</span>
-					</div>
-				</div>
+			<div class="col-sm-8" style="padding:50px;font-size:72px;font-family:'spaceship';">
+				Specialty Decision Bot
 			</div>
 		</div>
 	</div>
-	<div class="container" style="font-family: Verdana, Geneva, Tahoma, sans-serif;padding:10px;margin-top:20px;margin-bottom:20px;border: solid #ffffff">
-		<div style="text-align:center;">
-			<p>Copyright (c) SpecDecBot Team</p>
+	<div class="container" style="border:solid gray; text-align:center;margin:50px;padding:5px;">
+		<div class="row">
+			<div class="col-sm-4">
+				<h3 style="font-size:22px;font-family:'spaceship';">
+					About
+					</h3>
+				<p>
+					an NLP dependant Clever Bot for Critical Decision Affirmation.
+					<br>
+					<br>
+					<br>
+				</p>
+			</div>
+			<div class="col-sm-4">
+				<h3 style="font-size:22px;font-family:'spaceship';">
+					More Info
+					</h3>
+				<p>
+					This project is for spring semester of 2016 for the 4th year of Computer and Automation Engineering @ Tishreen University
+				</p>
+				<span class="label label-danger">It is now in early development stages</span>
+			</div>
+			<div class="col-sm-4">
+				<h3 style="font-size:22px;font-family:'spaceship';">
+					Progress
+					</h3>
+				<span class="label label-success">Project Registration @ Tishreen University</span>
+				<span class="label label-success">Aquiring the British National Corpus</span>
+				<span class="label label-primary">Writing an XML Parsing Class in C++</span>
+			</div>
+		</div>
+	</div>
+	<div class="container" style="border:solid gray; text-align:center;margin:50px;padding:5px;">
+		<div class="row">
+          <h3 style="font-size:22px;font-family:'spaceship';">
+					Copyright 2015-Now SpecDecBot Team
+					</h3>
+					<h6>Aly Shmahell, Alya Salman, Elias Soud, Mohammad Shbani, Ruaa Sleiman, Sara Ammar
 		</div>
 	</div>
 </body>
