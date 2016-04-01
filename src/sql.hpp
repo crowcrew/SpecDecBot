@@ -19,28 +19,33 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <bits/stdc++.h>
-#include <sqlite3.h>
-using namespace std;
+#include "global.hpp"
 
 #ifndef SQL_HPP
 #define SQL_HPP
 
-
-sqlite3 *db; // sqlite3 object
-char *ERROR; // ERROR message
-int STATE; // state returned from sqlite3 functions
-string statement; // SQL statement to be queried
-string field;
-const char* message; // callback function message
-
-
-
-void connect()
+class sql
 {
-    ERROR = 0;
-    STATE=sqlite3_open("database.db", &db);
-    if( STATE )
+public:
+    sqlite3 *db; // sqlite3 object
+    char *error; // error message to be past to the sqlite3_exec() function
+    int state; // state returned from sqlite3 functions
+    const char* message; // message to be passed to the callback() function
+    void connect(); // connects to the database on-disk and maps it to the sqlite3* db object in memory
+    sql(); // constructor
+    void query(); // queries the statement at hand at GLOBAL_HPP class
+};
+
+sql::sql()
+{
+    connect();
+}
+
+void sql::connect()
+{
+    error = 0;
+    state=sqlite3_open("database.db", &db);
+    if( state )
     {
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
         exit(0);
@@ -49,31 +54,19 @@ void connect()
 
 int callback(void *message, int argc, char **argv, char **col_name)
 {
-    int i;
-    for(i=0; i<argc; i++)
-    {
-        printf("%s = %s\n", col_name[i], argv[i] ? argv[i] : "NULL");
-        field = argv[i];
-    }
-    printf("\n");
-    return 0;
+        field.assign(argv[0]);
+        return 0;
 }
-void query(const char *statement,const char *message)
+
+void sql::query()
 {
-    STATE=sqlite3_exec(db,statement,callback,(void*)message,&ERROR);
-    if(STATE!=SQLITE_OK)
+    state=sqlite3_exec(db,statement.c_str(),callback,(void*)message,&error);
+    if(state!=SQLITE_OK)
     {
-        fprintf(stderr, "SQL ERROR: %s\n", ERROR);
-        sqlite3_free(ERROR);
+        fprintf(stderr, "SQL error: %s\n", error);
+        sqlite3_free(error);
     }
-}
-string select(string str)
-{
-    message = "peep";
-    statement="SELECT POS1 FROM DIC WHERE WORD = '";
-    statement+=str;
-    statement+="'";
-    query(statement.c_str(),message);
     statement.clear();
 }
+
 #endif // LEXER_HPP

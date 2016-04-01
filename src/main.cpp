@@ -20,10 +20,17 @@ freely, subject to the following restrictions:
 */
 
 #include "lexer.hpp"
-
+#include "global.hpp"
 int main()
 {
+    //initialize the lexer object
     lexer lex;
+
+    // input first sentence, tokenize it then debug it
+    lex.input();
+    lex.debug();
+
+    // input second sentence, tokenize it then debug it
     lex.input();
     lex.debug();
 }
