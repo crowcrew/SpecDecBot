@@ -1,4 +1,4 @@
-#This is the makefile used by the make utility to compile the EnDaBi Demos
+#This is the makefile used by the make utility to compile the SpecDecBot Demos
 SPECDECBOT : main.cpp sql.hpp
 	sudo g++ main.cpp -o ../bin/main -l sqlite3
 	../bin/main

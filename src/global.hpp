@@ -11,6 +11,6 @@ string sentence; // sentence being said to the bot as in "input sentence"
 string word; // word being tokenized
 string field; // query result as in "token of a word"
 string statement; // SQL statement to be queried
-int pos=0; // last position of a word in a SINGLE sentence
+int pos=0; // last position of the last word in a SINGLE sentence
 
 #endif // VAR_HPP
