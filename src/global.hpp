@@ -1,16 +1,11 @@
-#include <bits/stdc++.h>
-#include <sqlite3.h>
-using namespace std;
+#include "sql.hpp"
 
 #ifndef GLOBAL_HPP
 #define GLOBAL_HPP
 
+string sentence; // sentence being said to the bot as in "input sentence"
 string words[100]; // words of a SINGLE sentence
 string tokens[100][3]; // tokens of each word in a SINGLE sentence
-string sentence; // sentence being said to the bot as in "input sentence"
-string word; // word being tokenized
-string field; // query result as in "token of a word"
-string statement; // SQL statement to be queried
-int eos=0; // end of sentence
+sql sqlObject; // initialize an sql object
 
 #endif // VAR_HPP

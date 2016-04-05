@@ -19,7 +19,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "sql.hpp"
+
 #include "global.hpp"
 
 #ifndef LEXER_HPP
@@ -29,15 +29,18 @@ class lexer
 {
 public:
     lexer(); // constructor
-    sql db; // initialize an sql object
     void input(); // input to the sentence variable at GLOBAL_HPP class, split it, and store each word in the words[100] array
     void tokenize(); // query the words, and store their tokens to the tokens[100][3] array at GLOBAL_HPP class
     void debug(); // debug and output the words[100] & tokens[100][3] arrays
+private:
+    string word; // word being tokenized
+    string statement; // SQL statement to be queried
+    int eos; // end of sentence
 };
 
 lexer::lexer()
 {
-    sql db;
+    sql sqlObject;
 }
 
 void lexer::tokenize()
@@ -45,21 +48,21 @@ void lexer::tokenize()
     statement="SELECT POS1 FROM DIC WHERE WORD = '";
     statement+=word;
     statement+="'";
-    db.query();
+    sqlObject.query(statement);
     tokens[eos][0]=field;
     field.clear();
 
     statement="SELECT POS2 FROM DIC WHERE WORD = '";
     statement+=word;
     statement+="'";
-    db.query();
+    sqlObject.query(statement);
     tokens[eos][1]=field;
     field.clear();
 
     statement="SELECT POS3 FROM DIC WHERE WORD = '";
     statement+=word;
     statement+="'";
-    db.query();
+    sqlObject.query(statement);
     tokens[eos][2]=field;
     field.clear();
 }

@@ -20,7 +20,7 @@ freely, subject to the following restrictions:
 */
 
 #include "lexer.hpp"
-#include "global.hpp"
+
 int main()
 {
     //initialize the lexer object
