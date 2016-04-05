@@ -46,31 +46,31 @@ void lexer::tokenize()
     statement+=word;
     statement+="'";
     db.query();
-    tokens[pos][0]=field;
+    tokens[eos][0]=field;
     field.clear();
 
     statement="SELECT POS2 FROM DIC WHERE WORD = '";
     statement+=word;
     statement+="'";
     db.query();
-    tokens[pos][1]=field;
+    tokens[eos][1]=field;
     field.clear();
 
     statement="SELECT POS3 FROM DIC WHERE WORD = '";
     statement+=word;
     statement+="'";
     db.query();
-    tokens[pos][2]=field;
+    tokens[eos][2]=field;
     field.clear();
 }
 
 void lexer::debug()
 {
-    cout<<"debugging at pos : "<<pos<<"\n";
-    for(int i=0; i<pos; i++)
+    cout<<"debugging at eos : "<<eos<<"\n";
+    for(int i=0; i<eos; i++)
         cout<<words[i]<<" ";
     cout<<endl;
-    for(int i=1; i<=pos; i++)
+    for(int i=1; i<=eos; i++)
     {
         for(int j=0; j<3; j++)
         {
@@ -82,7 +82,7 @@ void lexer::debug()
 
 void lexer::input()
 {
-    pos=0;
+    eos=0;
     getline(cin,sentence);
     for(int i=0; i<=sentence.size(); i++)
     {
@@ -90,8 +90,8 @@ void lexer::input()
             word+=sentence[i];
         if(sentence[i]==' '||i==sentence.size()-1)
         {
-            words[pos]=word;
-            pos++;
+            words[eos]=word;
+            eos++;
             tokenize();
             word.clear();
         }
