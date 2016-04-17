@@ -8,4 +8,4 @@ string words[100]; // words of a SINGLE sentence
 string tokens[100][3]; // tokens of each word in a SINGLE sentence
 sql sqlObject; // initialize an sql object
 
-#endif // VAR_HPP
+#endif // GLOBAL_HPP

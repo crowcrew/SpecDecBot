@@ -34,7 +34,7 @@ public:
     void query(string queried_statement); // queries the statement at hand at GLOBAL_HPP class
 private:
     sqlite3 *MemoryDatabase; // sqlite3 object, an on-memory map of the on-disk databse.db file
-    char *error; // error message to be past to the sqlite3_exec() function
+    char *error; // error message to be passed to the sqlite3_exec() function
     int state; // state returned from sqlite3 functions
     const char* message; // message to be passed to the callback() function
 };
@@ -47,8 +47,8 @@ sql::sql()
 void sql::connect()
 {
     error = 0;
-    state=sqlite3_open("database.db", &MemoryDatabase);
-    if( state )
+    state = sqlite3_open("database.db", &MemoryDatabase);
+    if ( state )
     {
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(MemoryDatabase));
         exit(0);
@@ -74,4 +74,4 @@ void sql::query(string queried_statement)
     queried_statement.clear();
 }
 
-#endif // LEXER_HPP
+#endif // SQL_HPP
