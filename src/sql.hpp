@@ -47,7 +47,7 @@ sql::sql()
 void sql::connect()
 {
     error = 0;
-    state = sqlite3_open("database.db", &MemoryDatabase);
+    state = sqlite3_open("../src/database.db", &MemoryDatabase);
     if ( state )
     {
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(MemoryDatabase));

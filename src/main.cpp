@@ -31,6 +31,6 @@ int main()
     lex.debug();
 
     // input second sentence, tokenize it then debug it
-    lex.input();
-    lex.debug();
+    //lex.input();
+    //lex.debug();
 }
