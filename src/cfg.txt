@@ -1,2 +1,13 @@
 s np vp
-vp v np
+s aux np vp
+s vp
+np pron
+np pron noun
+np det nominal
+nominal noun
+nominal nominal noun
+nominal nominal pp
+vp verb
+vp verb np
+vp vp pp
+pp prep np

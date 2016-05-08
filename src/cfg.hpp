@@ -1,14 +1,15 @@
+#ifndef CFG_HPP
+#define CFG_HPP
+
 #include <vector>
 #include <stdio.h>
 #include <iostream>
 #include <string>
 #include <memory>
 #include <stdlib.h>
+#include "global.hpp"
 
 using namespace std;
-
-#ifndef CFG_HPP
-#define CFG_HPP
 
 class cfg
 {
