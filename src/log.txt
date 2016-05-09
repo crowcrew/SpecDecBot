@@ -18,6 +18,7 @@ debugging L head not_ok: det
 debugging LtR : verb
 debugging L child ok_par: verb
 debugging L head ok_par: vp
+LTR complete!
 pron verb det vp !
 debugging RTL : pron
 debugging R child ok_par: pron
@@ -46,18 +47,7 @@ debugging L head not_ok: det
 debugging LtR : vp
 debugging L child ok_par: vp
 debugging L head ok_par: s
-np vp det s !
-debugging RTL : np
-debugging RTL : vp
-debugging R child ok_par: np
-debugging R child ok_par: vp
-debugging R head ok_par: s
-debugging RTL : det
-debugging RTL : s
-debugging R head not_ok: s
-debugging RTL : det
-debugging R head not_ok: det
-RTL complete!
+LTR complete!
 next cycle!
 debugging perm pron
 debugging perm verb
@@ -78,6 +68,7 @@ debugging L head not_ok: det
 debugging LtR : noun
 debugging L child ok_par: noun
 debugging L head ok_par: nominal
+LTR complete!
 pron verb det nominal !
 debugging RTL : pron
 debugging R child ok_par: pron
@@ -100,6 +91,7 @@ debugging LtR : np
 debugging L head not_ok: vp
 debugging LtR : np
 debugging L head not_ok: np
+LTR complete!
 np vp np !
 debugging RTL : np
 debugging RTL : vp
