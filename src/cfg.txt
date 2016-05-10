@@ -1,4 +1,6 @@
 s np vp
+s vp np
+s np np
 s aux np vp
 s vp
 np pron

@@ -62,6 +62,68 @@ int ok_partial(vector<string> line_t)
     return -1;
 }
 
+int ok_parse_RtL_Sub(vector<node*> line_tt)
+{
+    if(line_tt.empty())
+        return 0;
+    vector<string> line_t;
+    if(!line_tt[0]->children.empty())
+        line_t.push_back(line_tt[0]->children.front()->value);
+        if(!line_t.empty())
+        logging("Parse Sub line_t: ",line_t[0]);
+    for(int counter_t = 1; counter_t<line_tt.size(); counter_t++)
+    {
+        line_t.push_back(line_tt[counter_t]->value);
+        if(ok_partial(line_t)&&rules[ok_partial(line_t)][0]==line_tt[0]->value)
+            return counter_t;
+    }
+    return 0;
+}
+
+void parse_RtL_Sub()
+{
+    vector<node*> level_t;
+    for(int counter = 0; counter<=level.size()-1; counter++)
+    {
+        vector<string> line_t;
+        vector<node*> level_tt;
+        for(int counter_t = counter; counter_t<level.size(); counter_t++)
+        {
+            line_t.push_back(level[counter_t]->value);
+            level_tt.push_back(level[counter_t]);
+            logging("debugging sub : ",level[counter_t]->value);
+        }
+        if(ok_parse_RtL_Sub(level_tt)>0)
+        {
+            for(int i = 1; i<=ok_parse_RtL_Sub(level_tt); i++)
+            {
+                node* child = new node;
+                child = level_tt[i];
+                level_tt[0]->children.push_back(child);
+                logging("debugging sub child ok_sub: ",child->value);
+            }
+            level_t.push_back(level_tt[0]);
+            line_t.clear();
+            counter+=ok_parse_RtL_Sub(level_tt);
+            level_tt.clear();
+            logging("debugging sub head ok_sub: ",level_tt[0]->value);
+        }
+        else
+        {
+            node* head = new node;
+            head = level[counter];
+            level_t.push_back(level_tt[0]);
+            logging("debugging sub head not_ok: ",head->value);
+            line_t.clear();
+            level_tt.clear();
+        }
+    }
+    level.clear();
+    for(int i=0; i<level_t.size(); i++)
+        level.push_back(level_t[i]);
+    logging("sub complete","!");
+}
+
 void parse_LtR()
 {
     /**
@@ -229,10 +291,10 @@ bool complete_cycle(vector<string> permutation)
         {
             if(flag==0&&level[i]->value=="s")
                 flag=1;
-            if(flag==1&&level[i]->value=="s")
+            else if(flag==1&&level[i]->value=="s")
                 return false;
         }
-        parse_LtR();
+        parse_RtL();
         if(level.size()>permutation.size())
             return false;
         if(level.size()==1&&level[0]->value=="s")
@@ -242,10 +304,26 @@ bool complete_cycle(vector<string> permutation)
         {
             if(flag==0&&level[i]->value=="s")
                 flag=1;
-            if(flag==1&&level[i]->value=="s")
+            else if(flag==1&&level[i]->value=="s")
                 return false;
         }
-        parse_RtL();
+        parse_LtR();
+        if(level.size()>permutation.size())
+        {
+            logging("lev_size>perm_size","!");
+            return false;
+        }
+        if(level.size()==1&&level[0]->value=="s")
+            return true;
+        flag=0;
+        for(int i=0; i<level.size(); i++)
+        {
+            if(flag==0&&level[i]->value=="s")
+                flag=1;
+            else if(flag==1&&level[i]->value=="s")
+                return false;
+        }
+        parse_RtL_Sub();
     }
     return false;
 }
