@@ -1,0 +1,215 @@
+cycle!!!!!!!!!!!!!!!!
+before!
+after!
+next box!!!->:
+ok_single : pron
+ok_single true : np
+next box!!!->:
+ok_single : verb
+ok_single true : vp
+next box!!!->:
+ok_single : det
+ok_full first : det
+ok_full secon : verb
+next box!!!->:
+ok_single : verb
+ok_single true : vp
+next box!!!->:
+ok_single : np
+ok_full first : np
+ok_full secon : vp
+ok_full true : s
+ok_full first : pron
+ok_full secon : vp
+next box!!!->:
+ok_single : vp
+ok_single true : s
+ok_full first : vp
+ok_full secon : det
+ok_full first : verb
+ok_full secon : det
+next box!!!->:
+ok_single : det
+ok_full first : det
+ok_full secon : vp
+next box!!!->:
+ok_single : np
+ok_full first : np
+ok_full secon : vp
+ok_full true : s
+ok_full first : pron
+ok_full secon : vp
+next box!!!->:
+ok_single : vp
+ok_single true : s
+ok_full first : vp
+ok_full secon : det
+ok_full first : verb
+ok_full secon : det
+next box!!!->:
+ok_single : np
+ok_full first : np
+ok_full secon : vp
+ok_full true : s
+s (np (pron ) vp (verb ) )  
+cycle!!!!!!!!!!!!!!!!
+before!
+after!
+next box!!!->:
+ok_single : pron
+ok_single true : np
+next box!!!->:
+ok_single : verb
+ok_single true : vp
+next box!!!->:
+ok_single : det
+ok_full first : det
+ok_full secon : noun
+next box!!!->:
+ok_single : noun
+ok_single true : nominal
+next box!!!->:
+ok_single : np
+ok_full first : np
+ok_full secon : vp
+ok_full true : s
+ok_full first : pron
+ok_full secon : vp
+next box!!!->:
+ok_single : vp
+ok_single true : s
+ok_full first : vp
+ok_full secon : det
+ok_full first : verb
+ok_full secon : det
+next box!!!->:
+ok_single : det
+ok_full first : det
+ok_full secon : nominal
+ok_full true : np
+next box!!!->:
+ok_single : np
+ok_full first : np
+ok_full secon : vp
+ok_full true : s
+ok_full first : pron
+ok_full secon : vp
+next box!!!->:
+ok_single : vp
+ok_single true : s
+ok_full first : vp
+ok_full secon : np
+ok_full true : s
+ok_full first : verb
+ok_full secon : np
+ok_full true : vp
+next box!!!->:
+ok_single : np
+ok_full first : np
+ok_full secon : vp
+ok_full true : s
+s (np (pron ) vp (verb np (det nominal (noun ) ) ) )  
+cycle!!!!!!!!!!!!!!!!
+before!
+after!
+next box!!!->:
+ok_single : verb
+ok_single true : vp
+next box!!!->:
+ok_single : pron
+ok_single true : np
+next box!!!->:
+ok_single : det
+ok_full first : det
+ok_full secon : verb
+next box!!!->:
+ok_single : verb
+ok_single true : vp
+next box!!!->:
+ok_single : vp
+ok_single true : s
+ok_full first : vp
+ok_full secon : np
+ok_full true : s
+ok_full first : verb
+ok_full secon : np
+ok_full true : vp
+next box!!!->:
+ok_single : np
+ok_full first : np
+ok_full secon : det
+ok_full first : pron
+ok_full secon : det
+next box!!!->:
+ok_single : det
+ok_full first : det
+ok_full secon : vp
+next box!!!->:
+ok_single : vp
+ok_single true : s
+ok_full first : vp
+ok_full secon : np
+ok_full true : s
+next box!!!->:
+ok_single : np
+ok_full first : np
+ok_full secon : det
+ok_full first : pron
+ok_full secon : det
+next box!!!->:
+ok_single : vp
+ok_single true : s
+s (vp (verb np (pron ) ) )  
+cycle!!!!!!!!!!!!!!!!
+before!
+after!
+next box!!!->:
+ok_single : verb
+ok_single true : vp
+next box!!!->:
+ok_single : pron
+ok_single true : np
+next box!!!->:
+ok_single : det
+ok_full first : det
+ok_full secon : noun
+next box!!!->:
+ok_single : noun
+ok_single true : nominal
+next box!!!->:
+ok_single : vp
+ok_single true : s
+ok_full first : vp
+ok_full secon : np
+ok_full true : s
+ok_full first : verb
+ok_full secon : np
+ok_full true : vp
+next box!!!->:
+ok_single : np
+ok_full first : np
+ok_full secon : det
+ok_full first : pron
+ok_full secon : det
+next box!!!->:
+ok_single : det
+ok_full first : det
+ok_full secon : nominal
+ok_full true : np
+next box!!!->:
+ok_single : vp
+ok_single true : s
+ok_full first : vp
+ok_full secon : np
+ok_full true : s
+next box!!!->:
+ok_single : np
+ok_full first : np
+ok_full secon : np
+ok_full first : pron
+ok_full secon : np
+ok_full true : np
+next box!!!->:
+ok_single : vp
+ok_single true : s
+s (vp (verb np (pron np (det nominal (noun ) ) ) ) )  

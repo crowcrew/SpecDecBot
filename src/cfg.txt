@@ -1,15 +1,15 @@
 s np vp
 s vp np
-s np np
-s aux np vp
 s vp
 np pron
 np pron noun
 np det nominal
+np pron np
 nominal noun
 nominal nominal noun
 nominal nominal pp
 vp verb
+vp aux
 vp verb np
 vp vp pp
 pp prep np

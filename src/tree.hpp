@@ -22,22 +22,36 @@ void node_connect(node* father,node* child)
     father->children.push_back(child);
 }
 
-string tree_dfs(node* head)
+pair<string,int> tree_dfs(node* head)
 {
     stack <node*> bucket;
-    string line;
+    pair<string,int> line;
+    line.second=0;
+    node* RPAR = new node;
+    RPAR->value = ")";
+    RPAR->children.clear();
+    node* SPACE = new node;
+    SPACE->value = " ";
+    SPACE->children.clear();
     bucket.push(head);
     while(!bucket.empty())
     {
         node* current_node = new node;
         current_node = bucket.top();
         bucket.pop();
-        line+=current_node->value;
+        line.first+=current_node->value;
         if(current_node->children.size())
-            line+="+";
+        {
+            line.first+=" (";
+            bucket.push(RPAR);
+        }
         else
-            line+="-";
-        for(int i=0; i<current_node->children.size(); i++)
+        {
+            if(current_node->value!=")")
+                line.second++;
+            line.first+=" ";
+        }
+        for(int i=current_node->children.size()-1; i>=0; i--)
             bucket.push(current_node->children[i]);
     }
     return line;

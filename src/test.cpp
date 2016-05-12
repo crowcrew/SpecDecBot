@@ -1,10 +1,13 @@
-#include <bits/stdc++.h>
+#include "global.hpp"
+#include "lexer.hpp"
+#include "cyk.hpp"
+#include "tree.hpp"
 using namespace std;
-
 int main()
 {
-    int i,j;
-    cin>>i>>j;
-    if(i%(j*j*j)==0)
-cout<<i%(j*j*j);
+    lexer lex;
+    lex.input();
+    lex.debug();
+    cycle_through();
+    //cout<<"************\n"<<tree_dfs(level[0])<<endl;
 }

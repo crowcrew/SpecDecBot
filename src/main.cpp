@@ -9,5 +9,6 @@ int main()
     lex.input();
     lex.debug();
     cycle_through();
-    cout<<"************\n"<<tree_dfs(level[0])<<endl;
+    cout<<"************\n";
+    // cout<<tree_dfs(level[0])<<endl;
 }
