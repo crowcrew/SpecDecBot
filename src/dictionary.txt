@@ -1,0 +1,6 @@
+i	pron	null	null
+am	verb	null	null
+a	det	null	null
+function	noun	verb	null
+are	verb	null	null
+you	pron	null	null
