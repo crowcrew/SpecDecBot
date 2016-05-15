@@ -1,4 +1,4 @@
-Copyright 2015 The SpecDecBot Project (Aly Shmahell, Alya Salman, Elias Soud, Mohammad Shbani, Ruaa Sleiman, Sarah Ammar). All rights reserved.
+Copyright 2015 The SpecDecBot Project (Aly Shmahell, Mohammad Shbani, Ruaa Sleiman). All rights reserved.
 
 Redistribution and use in source (Graphml,svg,tex and so forth) and 'compiled' forms (HTML, PDF, PNG, JPG, PostScript, RTF and so forth) with or without modification, are permitted provided that the following conditions are met:
 
