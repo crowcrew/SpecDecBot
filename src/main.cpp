@@ -8,58 +8,62 @@ using namespace std;
  * sentence being said to the bot as an "input sentence"
  */
 string sentence;
+
 /**
  * words of a single sentence
  */
 string words[100];
+
 /**
  * stores each iteration of a tokenized sentence
  */
 queue< vector<string> > permutations;
+
 /**
  * the final parse tree
  */
 string Parse_Tree;
 
-#endif // end of GLOBAL_HPP
+#endif /** end of GLOBAL_HPP **/
 
 #ifndef TREE_HPP
 #define TREE_HPP
 
-typedef struct node
+typedef struct tree_node
 {
     string value;
-    vector<node*> children;
-} node;
+    vector<tree_node*> children;
+} tree_node;
 
-pair<string,int> tree_dfs(node* head)
+pair<string,int> tree_dfs(tree_node* head)
 {
-    stack <node*> bucket;
+    stack <tree_node*> bucket;
     pair<string,int> line;
     line.second=0;
-    node* RPAR = new node;
+    tree_node* RPAR = new tree_node;
     RPAR->value = ")";
     RPAR->children.clear();
-    node* SPACE = new node;
+    tree_node* SPACE = new tree_node;
     SPACE->value = " ";
     SPACE->children.clear();
     bucket.push(head);
     while(!bucket.empty())
     {
-        node* current_node = new node;
+        tree_node* current_node = new tree_node;
         current_node = bucket.top();
         bucket.pop();
         line.first+=current_node->value;
         if(current_node->children.size())
         {
-            line.first+=" (";
+            line.first+="(";
             bucket.push(RPAR);
         }
         else
         {
             if(current_node->value!=")")
                 line.second++;
-            line.first+=" ";
+            if(bucket.size()&&bucket.top()->value!=")")
+                line.first+=" ";
         }
         for(int i=current_node->children.size()-1; i>=0; i--)
             bucket.push(current_node->children[i]);
@@ -120,17 +124,17 @@ public:
     }
 };
 
-#endif // end of CFG_HPP
+#endif /** end of CFG_HPP **/
 
-cfg cfg_n;
-vector< vector<string> > rules = cfg_n.rules;
+cfg CFGinMemory;
+vector< vector<string> > rules = CFGinMemory.rules;
 
 #ifndef CYK_HPP
 #define CYK_HPP
 
 int msize;
-node* curr_head;
-node* matrix_head;
+tree_node* curr_head;
+tree_node* matrix_head;
 
 void logging(string message,string log_line)
 {
@@ -144,7 +148,7 @@ void logging(string message,string log_line)
     fclose(log_t);
 }
 
-bool ok_single(node* node_t)
+bool ok_single(tree_node* node_t)
 {
     logging("ok_single : ",node_t->value);
     for(int counter=0; counter<rules.size()-1; counter++)
@@ -152,14 +156,14 @@ bool ok_single(node* node_t)
         if(rules[counter].size()==2&&rules[counter][1]==node_t->value)
         {
             logging("ok_single true : ",rules[counter][0]);
-            curr_head = new node;
+            curr_head = new tree_node;
             curr_head->value = rules[counter][0];
             return true;
         }
     }
     return false;
 }
-bool ok_full(vector<node*> line_t)
+bool ok_full(vector<tree_node*> line_t)
 {
     logging("ok_full first : ",line_t[0]->value);
     logging("ok_full secon : ",line_t[1]->value);
@@ -168,7 +172,7 @@ bool ok_full(vector<node*> line_t)
         if(rules[counter].size()==3&&rules[counter][1]==line_t[0]->value&&rules[counter][2]==line_t[1]->value)
         {
             logging("ok_full true : ",rules[counter][0]);
-            curr_head = new node;
+            curr_head = new tree_node;
             curr_head->value = rules[counter][0];
             return true;
         }
@@ -178,13 +182,13 @@ bool ok_full(vector<node*> line_t)
 bool cyk(vector<string> permutation)
 {
     msize = permutation.size();
-    node* empty_node = new node;
+    tree_node* empty_node = new tree_node;
     empty_node->value = "";
-    node* matrix[msize+1][msize];
+    tree_node* matrix[msize+1][msize];
     for(int i=0; i<msize+1; i++)
         for(int j=0; j<msize; j++)
         {
-            matrix[i][j]= new node;
+            matrix[i][j]= new tree_node;
         }
     logging("cycle","!!!!!!!!!!!!!!!!");
     logging("before","!");
@@ -207,7 +211,7 @@ bool cyk(vector<string> permutation)
             }
             else
             {
-                vector<node*> line;
+                vector<tree_node*> line;
                 line.push_back(matrix[row+1][col]);
                 line.push_back(matrix[row][col+1]);
                 if(ok_full(line)&&(((row!=0||col!=0)&&curr_head->value!="s")||((row==0&&col==0)&&curr_head->value=="s")))
@@ -222,7 +226,7 @@ bool cyk(vector<string> permutation)
                     matrix[row][col]=matrix[row+1][col];
                     if(matrix[row][col]->children.size()==1)
                     {
-                        vector<node*> line;
+                        vector<tree_node*> line;
                         line.push_back(matrix[row][col]->children.front());
                         line.push_back(matrix[row][col+1]);
                         if(ok_full(line))
@@ -247,18 +251,15 @@ bool cyk(vector<string> permutation)
     cout<<endl;
     //
     logging(tree_dfs(matrix[0][0]).first," ");
-    if(matrix[0][0]->value=="s"&&tree_dfs(matrix[0][0]).second==msize)
-    {
-        matrix_head = matrix[0][0];
+    matrix_head = matrix[0][0];
+    if(matrix_head->value=="s"&&tree_dfs(matrix_head).second==msize)
         return true;
-    }
     else
         return false;
 }
 
 void cycle_through()
 {
-
     vector<string> permutation;
     while(!permutations.empty())
     {
@@ -272,19 +273,19 @@ void cycle_through()
     logging("tree head not found!","");
 }
 
-#endif // end of CYK_HPP
+#endif /** end of CYK_HPP **/
 
 #ifndef DICTIONARY_HPP
 #define DICTIONARY_HPP
 
-typedef struct list_node
+typedef struct dictionary_node
 {
     vector<string> data_;
-    list_node *next;
-} list_node;
+    dictionary_node *next;
+} dictionary_node;
 
 int counter=0;
-list_node *hashtable[27];
+dictionary_node *hashtable[27];
 
 int hash_func(string data)
 {
@@ -300,14 +301,14 @@ int hash_func(string data)
  */
 vector<string> get_tokens(string word)
 {
-    list_node* current_list = new list_node;
+    dictionary_node* current_list = new dictionary_node;
 
     unsigned int hashvalue = hash_func(word);
 
     for(current_list=hashtable[hashvalue]; current_list!=NULL; current_list=current_list->next)
         if(current_list->data_.front()==word)
             return current_list->data_;
-    list_node* empty_list = new list_node;
+    dictionary_node* empty_list = new dictionary_node;
     return empty_list->data_;
 }
 
@@ -338,7 +339,7 @@ bool load()
         }
         if(buffer=='\n'&&word_tokens.size()>1)
         {
-            list_node *new_list = new list_node;
+            dictionary_node *new_list = new dictionary_node;
 
             new_list->data_ = word_tokens;
 
@@ -361,13 +362,6 @@ bool load()
     fclose(file);
 }
 
-/**
- * Returns number of words in dictionary if loaded else returns 0.
- */
-unsigned int size_(void)
-{
-    return counter;
-}
 
 /**
  * Unloads dictionary from memory. Returns true if successful else returns false.
@@ -376,8 +370,8 @@ bool unload()
 {
     for(int i=0; i<27; i++)
     {
-        list_node* main_list = new list_node;
-        list_node* sub_list = new list_node;
+        dictionary_node* main_list = new dictionary_node;
+        dictionary_node* sub_list = new dictionary_node;
 
         for(main_list = hashtable[i]; main_list; sub_list = main_list,main_list = main_list->next)
             free(sub_list);
@@ -388,7 +382,7 @@ bool unload()
     return true;
 }
 
-#endif // end of DICTIONARY_HPP
+#endif /** end of DICTIONARY_HPP **/
 
 #ifndef LEXER_HPP
 #define LEXER_HPP
@@ -505,7 +499,7 @@ private:
     }
 };
 
-#endif // end of LEXER_HPP
+#endif /** end of LEXER_HPP **/
 
 int main()
 {
