@@ -4,12 +4,24 @@ using namespace std;
 #ifndef GLOBAL_HPP
 #define GLOBAL_HPP
 
-string sentence; // sentence being said to the bot as in "input sentence"
-string words[100]; // words of a SINGLE sentence
-queue< vector<string> > permutations; // stores each iteration of a tokenized sentence
+/**
+ * sentence being said to the bot as an "input sentence"
+ */
+string sentence;
+/**
+ * words of a single sentence
+ */
+string words[100];
+/**
+ * stores each iteration of a tokenized sentence
+ */
+queue< vector<string> > permutations;
+/**
+ * the final parse tree
+ */
 string Parse_Tree;
 
-#endif // GLOBAL_HPP
+#endif // end of GLOBAL_HPP
 
 #ifndef TREE_HPP
 #define TREE_HPP
@@ -19,11 +31,6 @@ typedef struct node
     string value;
     vector<node*> children;
 } node;
-
-void node_connect(node* father,node* child)
-{
-    father->children.push_back(child);
-}
 
 pair<string,int> tree_dfs(node* head)
 {
@@ -59,7 +66,8 @@ pair<string,int> tree_dfs(node* head)
     }
     return line;
 }
-#endif // TREE_HPP
+
+#endif // end of TREE_HPP
 
 #ifndef CFG_HPP
 #define CFG_HPP
@@ -68,55 +76,52 @@ class cfg
 {
 public:
     vector< vector<string> > rules;
-    cfg();
-    void debug();
+    cfg()
+    {
+        FILE* file = fopen("cfg.txt","r");
+        if(file==NULL)
+        {
+            printf("Cannot open cfg.txt\n");
+            return;
+        }
+
+        char buffer;
+        string word;
+        vector <string> rule;
+
+        while(!feof(file))
+        {
+            fread(&buffer,sizeof(char),1,file);
+            if(buffer!=' '&&buffer!='\n')
+                word+=buffer;
+            if(buffer==' '||buffer=='\n')
+            {
+                rule.push_back(word);
+                word.clear();
+            }
+            if(buffer=='\n')
+            {
+                rules.push_back(rule);
+                rule.clear();
+            }
+        }
+        fclose(file);
+    }
+    void debug()
+    {
+        for(int i=0; i<rules.size()-1; i++)
+        {
+            cout<<"p: ";
+            for(int j=0; j<rules[i].size(); j++)
+                cout<<rules[i][j]<<" ";
+            if(i<rules.size()-2)
+                cout<<endl;
+        }
+    }
 };
 
-cfg::cfg()
-{
-    FILE* file = fopen("cfg.txt","r");
-    if(file==NULL)
-    {
-        printf("Cannot open cfg.txt\n");
-        return;
-    }
+#endif // end of CFG_HPP
 
-    char buffer;
-    string word;
-    vector <string> rule;
-
-    while(!feof(file))
-    {
-        fread(&buffer,sizeof(char),1,file);
-        if(buffer!=' '&&buffer!='\n')
-            word+=buffer;
-        if(buffer==' '||buffer=='\n')
-        {
-            rule.push_back(word);
-            word.clear();
-        }
-        if(buffer=='\n')
-        {
-            rules.push_back(rule);
-            rule.clear();
-        }
-    }
-    fclose(file);
-}
-
-void cfg::debug()
-{
-    for(int i=0; i<rules.size()-1; i++)
-    {
-        cout<<"p: ";
-        for(int j=0; j<rules[i].size(); j++)
-            cout<<rules[i][j]<<" ";
-        if(i<rules.size()-2)
-            cout<<endl;
-    }
-}
-
-#endif // CFG_HPP
 cfg cfg_n;
 vector< vector<string> > rules = cfg_n.rules;
 
@@ -197,7 +202,7 @@ bool cyk(vector<string> permutation)
             logging("next box","!!!->:");
             if(ok_single(matrix[row+1][col])&&(((row!=0||col!=0)&&curr_head->value!="s")||((row==0&&col==0)&&curr_head->value=="s")))
             {
-                node_connect(curr_head,matrix[row+1][col]);
+                curr_head->children.push_back(matrix[row+1][col]);
                 matrix[row][col] = curr_head;
             }
             else
@@ -207,8 +212,8 @@ bool cyk(vector<string> permutation)
                 line.push_back(matrix[row][col+1]);
                 if(ok_full(line)&&(((row!=0||col!=0)&&curr_head->value!="s")||((row==0&&col==0)&&curr_head->value=="s")))
                 {
-                    node_connect(curr_head,matrix[row+1][col]);
-                    node_connect(curr_head,matrix[row][col+1]);
+                    curr_head->children.push_back(matrix[row+1][col]);
+                    curr_head->children.push_back(matrix[row][col+1]);
                     matrix[row][col] = curr_head;
 
                 }
@@ -222,7 +227,7 @@ bool cyk(vector<string> permutation)
                         line.push_back(matrix[row][col+1]);
                         if(ok_full(line))
                         {
-                            node_connect(matrix[row][col],matrix[row][col+1]);
+                            matrix[row][col]->children.push_back(matrix[row][col+1]);
                         }
                     }
                 }
@@ -267,7 +272,7 @@ void cycle_through()
     logging("tree head not found!","");
 }
 
-#endif // CYK_HPP
+#endif // end of CYK_HPP
 
 #ifndef DICTIONARY_HPP
 #define DICTIONARY_HPP
@@ -382,7 +387,8 @@ bool unload()
     }
     return true;
 }
-#endif // DICTIONARY_HPP
+
+#endif // end of DICTIONARY_HPP
 
 #ifndef LEXER_HPP
 #define LEXER_HPP
@@ -390,113 +396,116 @@ bool unload()
 class lexer
 {
 public:
-    lexer(); // constructor
-    void input(); // input to the sentence variable at GLOBAL_HPP class, split it, and store each word in the words[100] array
-    void debug(); // debug and output the words[100] & tokens[100][3] arrays
+    /**
+     * input to the sentence variable at GLOBAL_HPP class,
+     * split it, and store each word in the words[100] array
+     */
+    void input()
+    {
+        eos=0;
+        getline(cin,sentence);
+        for(int i=0; i<=sentence.size(); i++)
+        {
+            if(sentence[i]!=' '&&sentence[i]!='\0')
+                word+=sentence[i];
+            if(sentence[i]==' '||i==sentence.size()-1)
+            {
+                words[eos]=word;
+                eos++;
+                tokenize();
+                word.clear();
+            }
+        }
+        sentence.clear();
+        iterate();
+    }
+    /**
+     * debug and output the words[100] & tokens[100][3] arrays
+     */
+    void debug()
+    {
+        cout<<"debugging each word at eos : "<<eos<<"\n";
+        vector< queue<string> > tokens_t = tokens;
+        for(int i=0; i<tokens_t.size(); i++)
+        {
+            while(!tokens_t[i].empty())
+            {
+                cout<<tokens_t[i].front()<<" ";
+                tokens_t[i].pop();
+            }
+            cout<<endl;
+        }
+        tokens_t.clear();
+
+        cout<<"debugging permutations at size : "<<permutations.size()<<"\n";
+        queue< vector<string> > permutations_t = permutations;
+        while(!permutations_t.empty())
+        {
+            for(int i=0; i<permutations_t.front().size(); i++)
+                cout<<permutations_t.front()[i]<<" ";
+            cout<<endl;
+            permutations_t.pop();
+        }
+
+    }
 private:
-    string word; // word being tokenized
-    string statement; // SQL statement to be queried
-    vector< queue<string> > tokens; // tokens of each word in a SINGLE sentence
-    int eos; // end of sentence
-    void tokenize(); // query the words, and store their tokens to the tokens[100][3] array at GLOBAL_HPP class
-    void iterate(); // iterates over tokens to generate permutations of tokenized sentences
-    void flip(int j);
-    void record();
+    /**
+     * word being tokenized
+     */
+    string word;
+    /**
+     * tokens of each word in a single sentence
+     */
+    vector< queue<string> > tokens;
+    /**
+     * end of sentence
+     */
+    int eos; //
+    /**
+     * query the words, and store their tokens to the tokens[100][3] array at GLOBAL_HPP class
+     */
+    void tokenize()
+    {
+        queue <string> word_tokens;
+        word_tokens.push(get_tokens(word)[1]);
+        word_tokens.push(get_tokens(word)[2]);
+        word_tokens.push(get_tokens(word)[3]);
+        tokens.push_back(word_tokens);
+    }
+    /**
+     * iterates over tokens to generate permutations of tokenized sentences
+     */
+    void iterate()
+    {
+        for(int i=1; i<=pow(3,tokens.size()); i++)
+        {
+            for(int j=0; j<tokens.size(); j++)
+                if(j==0)
+                    flip(j);
+                else if (i%(int)pow(3,j))
+                    flip(j);
+            record();
+        }
+    }
+    void flip(int j)
+    {
+        string temp = tokens[j].front();
+        tokens[j].pop();
+        tokens[j].push(temp);
+    }
+    void record()
+    {
+        vector <string> iteration;
+        for(int i=0; i<tokens.size(); i++)
+            if(tokens[i].front()=="null")
+                return;
+            else
+                iteration.push_back(tokens[i].front());
+        permutations.push(iteration);
+    }
 };
 
-lexer::lexer()
-{
-    return;
-}
-
-void lexer::tokenize()
-{
-    queue <string> word_tokens;
-    word_tokens.push(get_tokens(word)[1]);
-    word_tokens.push(get_tokens(word)[2]);
-    word_tokens.push(get_tokens(word)[3]);
-    tokens.push_back(word_tokens);
-}
-
-void lexer::record()
-{
-    vector <string> iteration;
-    for(int i=0; i<tokens.size(); i++)
-        if(tokens[i].front()=="null")
-            return;
-        else
-            iteration.push_back(tokens[i].front());
-    permutations.push(iteration);
-}
-
-void lexer::flip(int j)
-{
-    string temp = tokens[j].front();
-    tokens[j].pop();
-    tokens[j].push(temp);
-}
-
-void lexer::iterate()
-{
-    for(int i=1; i<=pow(3,tokens.size()); i++)
-    {
-        for(int j=0; j<tokens.size(); j++)
-            if(j==0)
-                flip(j);
-            else if (i%(int)pow(3,j))
-                flip(j);
-        record();
-    }
-}
-
-void lexer::debug()
-{
-    cout<<"debugging each word at eos : "<<eos<<"\n";
-    vector< queue<string> > tokens_t = tokens;
-    for(int i=0; i<tokens_t.size(); i++)
-    {
-        while(!tokens_t[i].empty())
-        {
-            cout<<tokens_t[i].front()<<" ";
-            tokens_t[i].pop();
-        }
-        cout<<endl;
-    }
-    tokens_t.clear();
-
-    cout<<"debugging permutations at size : "<<permutations.size()<<"\n";
-    queue< vector<string> > permutations_t = permutations;
-    while(!permutations_t.empty())
-    {
-        for(int i=0; i<permutations_t.front().size(); i++)
-            cout<<permutations_t.front()[i]<<" ";
-        cout<<endl;
-        permutations_t.pop();
-    }
-
-}
-
-void lexer::input()
-{
-    eos=0;
-    getline(cin,sentence);
-    for(int i=0; i<=sentence.size(); i++)
-    {
-        if(sentence[i]!=' '&&sentence[i]!='\0')
-            word+=sentence[i];
-        if(sentence[i]==' '||i==sentence.size()-1)
-        {
-            words[eos]=word;
-            eos++;
-            tokenize();
-            word.clear();
-        }
-    }
-    sentence.clear();
-    iterate();
-}
-
-#endif // LEXER_HPP
+#endif // end of LEXER_HPP
 
 int main()
 {
