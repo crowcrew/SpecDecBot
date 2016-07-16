@@ -15,7 +15,7 @@ string sentence;
 string words[100];
 
 /**
- * stores each iteration of a tokenized sentence
+ * stores each permutation of a tokenized sentence
  */
 queue< vector<string> > permutations;
 
@@ -24,256 +24,22 @@ queue< vector<string> > permutations;
  */
 string Parse_Tree;
 
-#endif /** end of GLOBAL_HPP **/
-
-#ifndef TREE_HPP
-#define TREE_HPP
-
-typedef struct tree_node
+/**
+ * a function for logging and display
+ */
+void LogThis(string message,string LogLine)
 {
-    string value;
-    vector<tree_node*> children;
-} tree_node;
-
-pair<string,int> tree_dfs(tree_node* head)
-{
-    stack <tree_node*> bucket;
-    pair<string,int> line;
-    line.second=0;
-    tree_node* RPAR = new tree_node;
-    RPAR->value = ")";
-    RPAR->children.clear();
-    tree_node* SPACE = new tree_node;
-    SPACE->value = " ";
-    SPACE->children.clear();
-    bucket.push(head);
-    while(!bucket.empty())
-    {
-        tree_node* current_node = new tree_node;
-        current_node = bucket.top();
-        bucket.pop();
-        line.first+=current_node->value;
-        if(current_node->children.size())
-        {
-            line.first+="(";
-            bucket.push(RPAR);
-        }
-        else
-        {
-            if(current_node->value!=")")
-                line.second++;
-            if(bucket.size()&&bucket.top()->value!=")")
-                line.first+=" ";
-        }
-        for(int i=current_node->children.size()-1; i>=0; i--)
-            bucket.push(current_node->children[i]);
-    }
-    return line;
-}
-
-#endif // end of TREE_HPP
-
-#ifndef CFG_HPP
-#define CFG_HPP
-
-class cfg
-{
-public:
-    vector< vector<string> > rules;
-    cfg()
-    {
-        FILE* file = fopen("cfg.txt","r");
-        if(file==NULL)
-        {
-            printf("Cannot open cfg.txt\n");
-            return;
-        }
-
-        char buffer;
-        string word;
-        vector <string> rule;
-
-        while(!feof(file))
-        {
-            fread(&buffer,sizeof(char),1,file);
-            if(buffer!=' '&&buffer!='\n')
-                word+=buffer;
-            if(buffer==' '||buffer=='\n')
-            {
-                rule.push_back(word);
-                word.clear();
-            }
-            if(buffer=='\n')
-            {
-                rules.push_back(rule);
-                rule.clear();
-            }
-        }
-        fclose(file);
-    }
-    void debug()
-    {
-        for(int i=0; i<rules.size()-1; i++)
-        {
-            cout<<"p: ";
-            for(int j=0; j<rules[i].size(); j++)
-                cout<<rules[i][j]<<" ";
-            if(i<rules.size()-2)
-                cout<<endl;
-        }
-    }
-};
-
-#endif /** end of CFG_HPP **/
-
-cfg CFGinMemory;
-vector< vector<string> > rules = CFGinMemory.rules;
-
-#ifndef CYK_HPP
-#define CYK_HPP
-
-int msize;
-tree_node* curr_head;
-tree_node* matrix_head;
-
-void logging(string message,string log_line)
-{
-    FILE *log_t = new FILE;
     string buffer;
     buffer+=message;
-    buffer+=log_line;
-    buffer+="\n";
-    log_t = fopen("log.txt","at+");
-    fwrite(buffer.c_str(),buffer.size(),1,log_t);
-    fclose(log_t);
+    buffer+=LogLine;
+    cout<<buffer;
+    FILE *LogFile = new FILE;
+    LogFile = fopen("log.txt","at+");
+    fwrite(buffer.c_str(),buffer.size(),1,LogFile);
+    fclose(LogFile);
 }
 
-bool ok_single(tree_node* node_t)
-{
-    logging("ok_single : ",node_t->value);
-    for(int counter=0; counter<rules.size()-1; counter++)
-    {
-        if(rules[counter].size()==2&&rules[counter][1]==node_t->value)
-        {
-            logging("ok_single true : ",rules[counter][0]);
-            curr_head = new tree_node;
-            curr_head->value = rules[counter][0];
-            return true;
-        }
-    }
-    return false;
-}
-bool ok_full(vector<tree_node*> line_t)
-{
-    logging("ok_full first : ",line_t[0]->value);
-    logging("ok_full secon : ",line_t[1]->value);
-    for(int counter=0; counter<rules.size()-1; counter++)
-    {
-        if(rules[counter].size()==3&&rules[counter][1]==line_t[0]->value&&rules[counter][2]==line_t[1]->value)
-        {
-            logging("ok_full true : ",rules[counter][0]);
-            curr_head = new tree_node;
-            curr_head->value = rules[counter][0];
-            return true;
-        }
-    }
-    return false;
-}
-bool cyk(vector<string> permutation)
-{
-    msize = permutation.size();
-    tree_node* empty_node = new tree_node;
-    empty_node->value = "";
-    tree_node* matrix[msize+1][msize];
-    for(int i=0; i<msize+1; i++)
-        for(int j=0; j<msize; j++)
-        {
-            matrix[i][j]= new tree_node;
-        }
-    logging("cycle","!!!!!!!!!!!!!!!!");
-    logging("before","!");
-    for(int i=0; i<msize; i++)
-    {
-        matrix[msize-i][i]->value = permutation[i];
-    }
-    logging("after","!");
-    cout<<msize<<endl;
-    for(int counter = 0; counter < msize+1; counter++)
-    {
-
-        for(int row = msize-counter-1, col = 0; row >= 0 && col < msize-counter; row--, col++)
-        {
-            logging("next box","!!!->:");
-            if(ok_single(matrix[row+1][col])&&(((row!=0||col!=0)&&curr_head->value!="s")||((row==0&&col==0)&&curr_head->value=="s")))
-            {
-                curr_head->children.push_back(matrix[row+1][col]);
-                matrix[row][col] = curr_head;
-            }
-            else
-            {
-                vector<tree_node*> line;
-                line.push_back(matrix[row+1][col]);
-                line.push_back(matrix[row][col+1]);
-                if(ok_full(line)&&(((row!=0||col!=0)&&curr_head->value!="s")||((row==0&&col==0)&&curr_head->value=="s")))
-                {
-                    curr_head->children.push_back(matrix[row+1][col]);
-                    curr_head->children.push_back(matrix[row][col+1]);
-                    matrix[row][col] = curr_head;
-
-                }
-                else
-                {
-                    matrix[row][col]=matrix[row+1][col];
-                    if(matrix[row][col]->children.size()==1)
-                    {
-                        vector<tree_node*> line;
-                        line.push_back(matrix[row][col]->children.front());
-                        line.push_back(matrix[row][col+1]);
-                        if(ok_full(line))
-                        {
-                            matrix[row][col]->children.push_back(matrix[row][col+1]);
-                        }
-                    }
-                }
-
-            }
-        }
-    }
-    //debug
-    for(int i=0; i<msize+1; i++)
-    {
-        for(int j=0; j<msize; j++)
-        {
-            cout<<matrix[i][j]->value<<" ";
-        }
-        cout<<endl;
-    }
-    cout<<endl;
-    //
-    logging(tree_dfs(matrix[0][0]).first," ");
-    matrix_head = matrix[0][0];
-    if(matrix_head->value=="s"&&tree_dfs(matrix_head).second==msize)
-        return true;
-    else
-        return false;
-}
-
-void cycle_through()
-{
-    vector<string> permutation;
-    while(!permutations.empty())
-    {
-        permutation = permutations.front();
-        permutations.pop();
-        if(cyk(permutation))
-            return;
-        permutation.clear();
-    }
-
-    logging("tree head not found!","");
-}
-
-#endif /** end of CYK_HPP **/
+#endif /** end of GLOBAL_HPP **/
 
 #ifndef DICTIONARY_HPP
 #define DICTIONARY_HPP
@@ -398,6 +164,8 @@ public:
     {
         eos=0;
         getline(cin,sentence);
+        LogThis("Input:"," ");
+        LogThis(sentence,"\n");
         for(int i=0; i<=sentence.size(); i++)
         {
             if(sentence[i]!=' '&&sentence[i]!='\0')
@@ -413,35 +181,7 @@ public:
         sentence.clear();
         iterate();
     }
-    /**
-     * debug and output the words[100] & tokens[100][3] arrays
-     */
-    void debug()
-    {
-        cout<<"debugging each word at eos : "<<eos<<"\n";
-        vector< queue<string> > tokens_t = tokens;
-        for(int i=0; i<tokens_t.size(); i++)
-        {
-            while(!tokens_t[i].empty())
-            {
-                cout<<tokens_t[i].front()<<" ";
-                tokens_t[i].pop();
-            }
-            cout<<endl;
-        }
-        tokens_t.clear();
 
-        cout<<"debugging permutations at size : "<<permutations.size()<<"\n";
-        queue< vector<string> > permutations_t = permutations;
-        while(!permutations_t.empty())
-        {
-            for(int i=0; i<permutations_t.front().size(); i++)
-                cout<<permutations_t.front()[i]<<" ";
-            cout<<endl;
-            permutations_t.pop();
-        }
-
-    }
 private:
     /**
      * word being tokenized
@@ -474,39 +214,256 @@ private:
         for(int i=1; i<=pow(3,tokens.size()); i++)
         {
             for(int j=0; j<tokens.size(); j++)
-                if(j==0)
-                    flip(j);
-                else if (i%(int)pow(3,j))
-                    flip(j);
+                if(j==0||i%(int)pow(3,j))
+                {
+                    string temp = tokens[j].front();
+                    tokens[j].pop();
+                    tokens[j].push(temp);
+                }
             record();
         }
     }
-    void flip(int j)
-    {
-        string temp = tokens[j].front();
-        tokens[j].pop();
-        tokens[j].push(temp);
-    }
+
     void record()
     {
-        vector <string> iteration;
+        vector <string> permutation;
         for(int i=0; i<tokens.size(); i++)
             if(tokens[i].front()=="null")
                 return;
             else
-                iteration.push_back(tokens[i].front());
-        permutations.push(iteration);
+                permutation.push_back(tokens[i].front());
+        permutations.push(permutation);
     }
 };
 
 #endif /** end of LEXER_HPP **/
 
+#ifndef TREE_HPP
+#define TREE_HPP
+
+typedef struct tree_node
+{
+    string value;
+    vector<tree_node*> children;
+} tree_node;
+
+pair<string,int> tree_dfs(tree_node* head)
+{
+    stack <tree_node*> bucket;
+    pair<string,int> line;
+    line.second=0;
+    tree_node* RPAR = new tree_node;
+    RPAR->value = ")";
+    RPAR->children.clear();
+    tree_node* SPACE = new tree_node;
+    SPACE->value = " ";
+    SPACE->children.clear();
+    bucket.push(head);
+    while(!bucket.empty())
+    {
+        tree_node* current_node = new tree_node;
+        current_node = bucket.top();
+        bucket.pop();
+        line.first+=current_node->value;
+        if(current_node->children.size())
+        {
+            line.first+="(";
+            bucket.push(RPAR);
+        }
+        else
+        {
+            if(current_node->value!=")")
+                line.second++;
+            if(bucket.size()&&bucket.top()->value!=")")
+                line.first+=" ";
+        }
+        for(int i=current_node->children.size()-1; i>=0; i--)
+            bucket.push(current_node->children[i]);
+    }
+    return line;
+}
+
+#endif /** end of TREE_HPP **/
+
+#ifndef CFG_HPP
+#define CFG_HPP
+
+class cfg
+{
+public:
+    vector< vector<string> > rules;
+    cfg()
+    {
+        FILE* file = fopen("cfg.txt","r");
+        if(file==NULL)
+        {
+            printf("Cannot open cfg.txt\n");
+            return;
+        }
+
+        char buffer;
+        string word;
+        vector <string> rule;
+
+        while(!feof(file))
+        {
+            fread(&buffer,sizeof(char),1,file);
+            if(buffer!=' '&&buffer!='\n')
+                word+=buffer;
+            if(buffer==' '||buffer=='\n')
+            {
+                rule.push_back(word);
+                word.clear();
+            }
+            if(buffer=='\n')
+            {
+                rules.push_back(rule);
+                rule.clear();
+            }
+        }
+        fclose(file);
+    }
+};
+
+#endif /** end of CFG_HPP **/
+
+cfg CFGinMemory;
+vector< vector<string> > rules = CFGinMemory.rules;
+
+#ifndef CYK_HPP
+#define CYK_HPP
+
+int MatrixSize;
+tree_node* curr_head;
+
+bool ok_single(tree_node* node_t)
+{
+    for(int counter=0; counter<rules.size()-1; counter++)
+    {
+        if(rules[counter].size()==2&&rules[counter][1]==node_t->value)
+        {
+            curr_head = new tree_node;
+            curr_head->value = rules[counter][0];
+            return true;
+        }
+    }
+    return false;
+}
+
+bool ok_full(vector<tree_node*> line_t)
+{
+    for(int counter=0; counter<rules.size()-1; counter++)
+    {
+        if(rules[counter].size()==3&&rules[counter][1]==line_t[0]->value&&rules[counter][2]==line_t[1]->value)
+        {
+            curr_head = new tree_node;
+            curr_head->value = rules[counter][0];
+            return true;
+        }
+    }
+    return false;
+}
+
+bool cyk(vector<string> permutation)
+{
+    MatrixSize = permutation.size();
+    tree_node* empty_node = new tree_node;
+    empty_node->value = "";
+    tree_node* matrix[MatrixSize+1][MatrixSize];
+    for(int i=0; i<MatrixSize+1; i++)
+        for(int j=0; j<MatrixSize; j++)
+        {
+            matrix[i][j]= new tree_node;
+        }
+    for(int i=0; i<MatrixSize; i++)
+    {
+        matrix[MatrixSize-i][i]->value = permutation[i];
+    }
+    for(int counter = 0; counter < MatrixSize+1; counter++)
+    {
+
+        for(int row = MatrixSize-counter-1, col = 0; row >= 0 && col < MatrixSize-counter; row--, col++)
+        {
+            if(ok_single(matrix[row+1][col])&&(((row!=0||col!=0)&&curr_head->value!="s")||((row==0&&col==0)&&curr_head->value=="s")))
+            {
+                curr_head->children.push_back(matrix[row+1][col]);
+                matrix[row][col] = curr_head;
+            }
+            else
+            {
+                vector<tree_node*> line;
+                line.push_back(matrix[row+1][col]);
+                line.push_back(matrix[row][col+1]);
+                if(ok_full(line)&&(((row!=0||col!=0)&&curr_head->value!="s")||((row==0&&col==0)&&curr_head->value=="s")))
+                {
+                    curr_head->children.push_back(matrix[row+1][col]);
+                    curr_head->children.push_back(matrix[row][col+1]);
+                    matrix[row][col] = curr_head;
+
+                }
+                else
+                {
+                    matrix[row][col]=matrix[row+1][col];
+                    if(matrix[row][col]->children.size()==1)
+                    {
+                        vector<tree_node*> line;
+                        line.push_back(matrix[row][col]->children.front());
+                        line.push_back(matrix[row][col+1]);
+                        if(ok_full(line))
+                        {
+                            matrix[row][col]->children.push_back(matrix[row][col+1]);
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    /**
+     * Logging
+     */
+    for(int i=0; i<MatrixSize+1; i++)
+    {
+        for(int j=0; j<MatrixSize; j++)
+        {
+            LogThis(matrix[i][j]->value," ");
+        }
+        LogThis(" ","\n");
+    }
+    LogThis("This Cycle produced this Parse Line:"," ");
+    LogThis(tree_dfs(matrix[0][0]).first,"\n");
+
+    /**
+     * Finding Tree Head
+     */
+    if(matrix[0][0]->value=="s"&&tree_dfs(matrix[0][0]).second==MatrixSize)
+        return true;
+    else
+        return false;
+}
+
+void cycle_through()
+{
+    vector<string> permutation;
+    while(!permutations.empty())
+    {
+        permutation = permutations.front();
+        permutations.pop();
+        if(cyk(permutation))
+            return;
+        permutation.clear();
+    }
+
+    LogThis("tree head not found!","\n");
+}
+
+#endif /** end of CYK_HPP **/
+
 int main()
 {
     lexer lex;
     load();
+    LogThis("**new input**","\n");
     lex.input();
-    lex.debug();
     cycle_through();
-    cout<<"************\n"<<tree_dfs(matrix_head).first<<endl;
 }
