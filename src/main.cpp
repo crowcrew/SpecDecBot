@@ -4,15 +4,6 @@ using namespace std;
 #ifndef GLOBAL_HPP
 #define GLOBAL_HPP
 
-/**
- * sentence being said to the bot as an "input sentence"
- */
-string sentence;
-
-/**
- * words of a single sentence
- */
-string words[100];
 
 /**
  * stores each permutation of a tokenized sentence
@@ -156,6 +147,17 @@ bool unload()
 class lexer
 {
 public:
+
+    /**
+    * sentence being said to the bot as an "input sentence"
+    */
+    string sentence;
+
+    /**
+     * words of a single sentence
+     */
+    string words[100];
+
     /**
      * input to the sentence variable at GLOBAL_HPP class,
      * split it, and store each word in the words[100] array

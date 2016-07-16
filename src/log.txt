@@ -18,3 +18,83 @@ np vp det
 np verb    
 pron     
 This Cycle produced this Parse Line: s(np(pron) vp(verb np(det nominal(noun))))
+**new input**
+Input: i am
+s vp  
+np verb  
+pron   
+This Cycle produced this Parse Line: s(np(pron) vp(verb))
+**new input**
+Input: i am a function
+s vp det vp  
+np vp det verb  
+np vp det   
+np verb    
+pron     
+This Cycle produced this Parse Line: s(np(pron) vp(verb))
+s vp np nominal  
+np vp det noun  
+np vp det   
+np verb    
+pron     
+This Cycle produced this Parse Line: s(np(pron) vp(verb np(det nominal(noun))))
+**new input**
+Input: are you a function
+s np det vp  
+vp np det verb  
+vp np det   
+vp pron    
+verb     
+This Cycle produced this Parse Line: s(vp(verb np(pron)))
+s np np nominal  
+vp np det noun  
+vp np det   
+vp pron    
+verb     
+This Cycle produced this Parse Line: s(vp(verb np(pron np(det nominal(noun)))))
+**new input**
+Input: i am
+s vp  
+np verb  
+pron   
+This Cycle produced this Parse Line: s(np(pron) vp(verb))
+**new input**
+Input: i am a function
+s vp det vp  
+np vp det verb  
+np vp det   
+np verb    
+pron     
+This Cycle produced this Parse Line: s(np(pron) vp(verb))
+s vp np nominal  
+np vp det noun  
+np vp det   
+np verb    
+pron     
+This Cycle produced this Parse Line: s(np(pron) vp(verb np(det nominal(noun))))
+**new input**
+Input: i am
+s vp  
+np verb  
+pron   
+This Cycle produced this Parse Line: s(np(pron) vp(verb))
+**new input**
+Input: i am a function
+s vp det vp  
+np vp det verb  
+np vp det   
+np verb    
+pron     
+This Cycle produced this Parse Line: s(np(pron) vp(verb))
+s vp np nominal  
+np vp det noun  
+np vp det   
+np verb    
+pron     
+This Cycle produced this Parse Line: s(np(pron) vp(verb np(det nominal(noun))))
+**new input**
+Input: i
+pron  
+pron  
+This Cycle produced this Parse Line: pron
+tree head not found!
