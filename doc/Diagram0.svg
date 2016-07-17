@@ -131,6 +131,8 @@
       <rect fill="none" x="330" width="143" height="73" y="783.3333" clip-path="url(#clipPath2)"/>
       <text x="385.0293" xml:space="preserve" font-size="12px" y="704.9876" clip-path="url(#clipPath2)" stroke="none">CYK()</text>
       <rect fill="none" x="330" width="143" height="73" y="664.3333" clip-path="url(#clipPath2)"/>
+      <text x="11.1904" xml:space="preserve" font-size="12px" y="43.6543" clip-path="url(#clipPath2)" stroke="none">log.txt</text>
+      <rect fill="none" x="-41" width="143" height="73" y="3" clip-path="url(#clipPath2)"/>
     </g>
     <g text-rendering="geometricPrecision" stroke-miterlimit="1.45" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,91,139)" stroke-linecap="butt">
       <path fill="none" d="M117 505.25 L102 511.5 L117 517.75 L114.15 513 L400 513 L400 525.3333 L403 525.3333 L403 511.5 L403 510 L114.15 510 L117 505.25 Z" clip-path="url(#clipPath2)"/>
@@ -147,6 +149,9 @@
     </g>
     <g text-rendering="geometricPrecision" stroke-miterlimit="1.45" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,91,139)" stroke-linecap="butt">
       <path fill="none" d="M401.5 598.3333 L395.25 613.3333 L400 610.4833 L400 610.4833 L400 664.3333 L403 664.3333 L403 610.4833 L403 610.4833 L407.75 613.3333 L401.5 598.3333 Z" clip-path="url(#clipPath2)"/>
+    </g>
+    <g text-rendering="geometricPrecision" stroke-miterlimit="1.45" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,91,139)" stroke-linecap="butt">
+      <path fill="none" d="M30.5 76 L24.25 91 L29 88.15 L29 88.15 L29 129.5391 L32 129.5391 L32 88.15 L32 88.15 L36.75 91 L30.5 76 Z" clip-path="url(#clipPath2)"/>
     </g>
   </g>
 </svg>
