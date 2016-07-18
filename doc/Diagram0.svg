@@ -117,6 +117,10 @@
       <path fill="none" d="M697 76 L697 106.85 L692.25 104 L698.5 119 L704.75 104 L700 106.85 L700 76 Z" clip-path="url(#clipPath2)"/>
     </g>
     <g text-rendering="geometricPrecision" stroke-miterlimit="1.45" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,91,139)" stroke-linecap="butt">
+      <path fill="none" d="M451.5168 118.9598 L451.5168 96.7323 L657.7274 96.7323 L657.7274 110.9896" clip-path="url(#clipPath2)"/>
+      <path d="M657.7274 118.9896 L662.7274 106.9896 L657.7274 109.9896 L652.7274 106.9896 Z" clip-path="url(#clipPath2)" stroke="none"/>
+    </g>
+    <g text-rendering="geometricPrecision" stroke-miterlimit="1.45" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,91,139)" stroke-linecap="butt">
       <path fill="none" d="M502 149.25 L487 155.5 L502 161.75 L499.15 157 L627 157 L627 154 L499.15 154 L502 149.25 Z" clip-path="url(#clipPath2)"/>
     </g>
     <g text-rendering="geometricPrecision" stroke-miterlimit="1.45" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,91,139)" stroke-linecap="butt">
