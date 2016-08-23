@@ -1,4 +1,4 @@
-<img src = "./doc/SpecDecBot-Cover.png")>
+<img src = "./doc/SpecDecBot-Cover.svg")>
 
 # <p align="center"> an NLP dependant Clever Bot for Critical Decision Affirmation
  </p>
