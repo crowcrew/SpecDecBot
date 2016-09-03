@@ -14,8 +14,8 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="SpecDecBot-Cover.svg"
-   inkscape:export-filename="/media/aly/DataBank/ego/projects/SpecDecBot/doc/SpecDecBot-Main.png"
+   sodipodi:docname="SpecDecBot-Cover-i.svg"
+   inkscape:export-filename="/media/aly/DataBank/Ego/Git/SpecDecBot/SpecDecBot/doc/SpecDecBot-Cover.png"
    inkscape:export-xdpi="90.019997"
    inkscape:export-ydpi="90.019997">
   <defs
@@ -27,7 +27,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
+     inkscape:zoom="0.7"
      inkscape:cx="175.25413"
      inkscape:cy="236.66592"
      inkscape:document-units="px"
@@ -59,19 +59,6 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:groupmode="layer"
-     id="layer3"
-     inkscape:label="Layer 2">
-    <rect
-       transform="translate(0,-752.36218)"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.03704548;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4170"
-       width="614.22968"
-       height="305.65826"
-       x="0.028022757"
-       y="752.3902" />
-  </g>
-  <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
@@ -90,26 +77,24 @@
          id="flowPara2993" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot2995"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:72px;line-height:125%;font-family:'Tlwg Typo';-inkscape-font-specification:'Tlwg Typo Bold';letter-spacing:9px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#000000;opacity:1;stroke-opacity:1;stroke-width:1.00034025;stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:bevel;"
-       transform="matrix(1.0048154,0,0,0.96491862,76.251169,577.30972)"><flowRegion
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:72px;line-height:125%;font-family:'Tlwg Typo';-inkscape-font-specification:'Tlwg Typo Bold';letter-spacing:9px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(1.0048154,0,0,0.96491862,76.25117,585.88115)"><flowRegion
          id="flowRegion2997"><rect
            id="rect2999"
-           width="619.89703"
-           height="285.67596"
+           width="640"
+           height="99.263428"
            x="180"
            y="206.6479"
-           style="font-weight:bold;font-size:72px;-inkscape-font-specification:'Tlwg Typo Bold';letter-spacing:9px;stroke:#000000;stroke-opacity:1;stroke-width:1.00034025;stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:bevel;" /></flowRegion><flowPara
+           style="font-weight:bold;font-size:72px;-inkscape-font-specification:'Tlwg Typo Bold';letter-spacing:9px" /></flowRegion><flowPara
          id="flowPara3001"><flowSpan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Waree;-inkscape-font-specification:'Waree Bold';letter-spacing:-8px;stroke:#000000;stroke-opacity:1;stroke-width:1.00034025;stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:bevel;"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Waree;-inkscape-font-specification:'Waree Bold';letter-spacing:-8px"
            id="flowSpan3019">Spec</flowSpan><flowSpan
-           style="font-style:normal;font-weight:500;-inkscape-font-specification:'Tlwg Typo Medium';letter-spacing:9px;stroke:#000000;stroke-opacity:1;stroke-width:1.00034025;stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:bevel;"
+           style="font-style:normal;font-weight:500;-inkscape-font-specification:'Tlwg Typo Medium';letter-spacing:9px"
            id="flowSpan3011"><flowSpan
-             style="font-weight:bold;-inkscape-font-specification:'Tlwg Typo Bold';stroke:#000000;stroke-opacity:1;stroke-width:1.00034025;stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:bevel;"
+             style="font-weight:bold;-inkscape-font-specification:'Tlwg Typo Bold'"
              id="flowSpan3427"><flowSpan
-               style="letter-spacing:0px;stroke:#000000;stroke-opacity:1;stroke-width:1.00034025;stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:bevel;"
-               id="flowSpan3429">ialty </flowSpan></flowSpan></flowSpan></flowPara><flowPara
-         id="flowPara4174">Decision</flowPara><flowPara
-         id="flowPara4176">Bot</flowPara></flowRoot>    <flowRoot
+               style="letter-spacing:0px"
+               id="flowSpan3429">ialty </flowSpan></flowSpan></flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3003"
        style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Tlwg Typo';-inkscape-font-specification:'Tlwg Typo Medium';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><flowRegion
@@ -134,7 +119,7 @@
        xml:space="preserve"
        id="flowRoot3019"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:72px;line-height:125%;font-family:'Tlwg Typo';-inkscape-font-specification:'Tlwg Typo Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       transform="translate(-37.138392,458.37384)"><flowRegion
+       transform="translate(-37.138393,466.94526)"><flowRegion
          id="flowRegion3021"><rect
            id="rect3023"
            width="394.28571"
@@ -143,11 +128,15 @@
            y="395.21933"
            style="font-weight:bold;font-size:72px;-inkscape-font-specification:'Tlwg Typo Bold'" /></flowRegion><flowPara
          id="flowPara3025"
-         style="letter-spacing:-8px" /></flowRoot>    <flowRoot
+         style="letter-spacing:-8px"><flowSpan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Waree;-inkscape-font-specification:'Waree Bold'"
+           id="flowSpan3431">Dec</flowSpan><flowSpan
+           style="font-style:normal;font-weight:bold;-inkscape-font-specification:'Tlwg Typo Bold';letter-spacing:0px"
+           id="flowSpan3013">ision</flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3035"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:72px;line-height:125%;font-family:'Tlwg Typo';-inkscape-font-specification:'Tlwg Typo Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       transform="translate(-8.5758924,440.07156)"><flowRegion
+       transform="translate(-8.5758929,448.64298)"><flowRegion
          id="flowRegion3037"><rect
            id="rect3039"
            width="254.28571"
@@ -156,9 +145,9 @@
            y="480.93362"
            style="font-weight:bold;font-size:72px;-inkscape-font-specification:'Tlwg Typo Bold'" /></flowRegion><flowPara
          id="flowPara3041"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Waree;-inkscape-font-specification:'Waree Bold';letter-spacing:-8px" /></flowRoot>    <a
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Waree;-inkscape-font-specification:'Waree Bold';letter-spacing:-8px">Bot</flowPara></flowRoot>    <a
        id="a3017"
-       transform="translate(-22.857142,494.28571)">
+       transform="translate(-22.857143,502.85714)">
       <rect
          y="292.36218"
          x="40"
@@ -170,11 +159,11 @@
        sodipodi:type="arc"
        style="fill:#ffffff"
        id="path3137"
-       sodipodi:cx="77.142868"
-       sodipodi:cy="866.64789"
+       sodipodi:cx="77.14286"
+       sodipodi:cy="875.2193"
        sodipodi:rx="20"
        sodipodi:ry="40"
-       d="M 79.03905,906.46771 A 20,40 0 0 1 57.304152,871.71753 20,40 0 0 1 73.972021,827.1538 20,40 0 0 1 96.777853,859.04069 20,40 0 0 1 81.575291,905.6532 l -4.432423,-39.00531 z"
+       d="M 79.039043,915.03912 A 20,40 0 0 1 57.304144,880.28895 20,40 0 0 1 73.972013,835.72521 20,40 0 0 1 96.777846,867.6121 20,40 0 0 1 81.575283,914.22461 L 77.14286,875.2193 Z"
        sodipodi:start="1.4758446"
        sodipodi:end="1.3473197" />
     <path
@@ -182,21 +171,21 @@
        style="fill:#ffffff"
        id="path3139"
        sodipodi:cx="165.71428"
-       sodipodi:cy="866.64789"
+       sodipodi:cy="875.2193"
        sodipodi:rx="20"
        sodipodi:ry="40"
-       d="m 167.61046,906.46771 a 20,40 0 0 1 -21.7349,-34.75018 20,40 0 0 1 16.66787,-44.56373 20,40 0 0 1 22.80583,31.88689 20,40 0 0 1 -15.20256,46.61251 l -4.43242,-39.00531 z"
+       d="m 167.61046,915.03912 a 20,40 0 0 1 -21.7349,-34.75017 20,40 0 0 1 16.66787,-44.56374 20,40 0 0 1 22.80583,31.88689 20,40 0 0 1 -15.20256,46.61251 l -4.43242,-39.00531 z"
        sodipodi:start="1.4758446"
        sodipodi:end="1.3473197" />
     <path
        sodipodi:type="arc"
        style="fill:#ffffff"
        id="path3143"
-       sodipodi:cx="117.14287"
-       sodipodi:cy="926.64783"
+       sodipodi:cx="117.14286"
+       sodipodi:cy="935.2193"
        sodipodi:rx="60"
        sodipodi:ry="20"
-       d="m 122.83141,946.55774 a 60,20 0 0 1 -65.204691,-17.37509 60,20 0 0 1 50.003611,-22.28187 60,20 0 0 1 68.41749,15.94345 60,20 0 0 1 -45.60768,23.30625 l -13.29727,-19.50265 z"
+       d="m 122.83141,955.12921 a 60,20 0 0 1 -65.204699,-17.37509 60,20 0 0 1 50.003609,-22.28186 60,20 0 0 1 68.4175,15.94344 60,20 0 0 1 -45.60769,23.30626 L 117.14286,935.2193 Z"
        sodipodi:start="1.4758446"
        sodipodi:end="1.3473197" />
   </g>
